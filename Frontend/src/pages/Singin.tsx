@@ -1,6 +1,4 @@
-
 import { SignIn } from "@clerk/clerk-react";
-import { ThemeToggle } from "@/components/ThemeToggle";
 
 const SignInPage = () => {
   return (

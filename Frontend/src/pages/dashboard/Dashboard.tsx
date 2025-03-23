@@ -1,7 +1,6 @@
 import { useUser } from "@clerk/clerk-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Camera, ImagePlus, Brain, Package } from "lucide-react";
-import { useState } from "react";
 import ImagesTab from "../dashboard/ImagesTab";
 import GenerateTab from "../dashboard/GenerateTabs";
 import TrainTab from "../dashboard/Training";
@@ -10,7 +9,6 @@ import PacksTab from "../dashboard/PacksTab";
 
 const Dashboard = ({ page }: { page: string }) => {
   const { user } = useUser();
-  const [activeTab, setActiveTab] = useState('');
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -20,7 +18,7 @@ const Dashboard = ({ page }: { page: string }) => {
           <p className="text-muted-foreground">Create stunning images with AI</p>
         </div>
 
-        <Tabs defaultValue={page.length > 0 ? page : "images"} onValueChange={setActiveTab} className="w-full flex justify-center">
+        <Tabs defaultValue={page.length > 0 ? page : "images"} className="w-full flex justify-center">
           <div className="justify-center flex">
             <TabsList className="grid grid-cols-4 gap-4 mb-8">
               <TabsTrigger value="images" className="flex items-center gap-2">

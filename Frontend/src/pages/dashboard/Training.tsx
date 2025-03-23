@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Button } from "@/components/ui/button"
 import {
     Card,
@@ -51,7 +51,7 @@ const Training = () => {
             name
         }
         const token = await getToken()
-        const response = await axios.post(`${BACKEND_URL}/ai/training`, input, {
+        await axios.post(`${BACKEND_URL}/ai/training`, input, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -134,12 +134,12 @@ const Training = () => {
                         </div>
                         <div className="flex flex-col space-y-1.5">
                         <Label htmlFor="name">Bald</Label>
-                        <Switch className='cursor-pointer' onClick={(e) => {
+                        <Switch className='cursor-pointer' onClick={() => {
                             setBald(!bald)
                         }}/>
                         </div>
                         <UploadModal onUploadDone={(zipUrl) => {
-                            // setZipUrl(zipUrl)
+                            setZipUrl(zipUrl)
                         }} />
                         {/* <UploadModal /> */}
                     </div>

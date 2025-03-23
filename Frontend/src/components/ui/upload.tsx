@@ -28,7 +28,7 @@ export function UploadModal({onUploadDone}: {onUploadDone: (zipUrlurl: string) =
                 const content = await zip.generateAsync({type: 'blob'})
                 const formData = new FormData()
                 formData.append('file', content)
-                const res = await axios.put(url, formData)
+                await axios.put(url, formData)
                 onUploadDone(`${CLOUDFLARE_URL}/${key}`)
               }
             } 

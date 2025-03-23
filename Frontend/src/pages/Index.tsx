@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { TestimonialCard } from "@/components/TestimonialCards";
-import { PriceCard } from "@/components/PriceCards";
-import { ArrowRight, CloudFog, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { SignedIn, SignedOut } from "@clerk/clerk-react";
@@ -64,21 +63,12 @@ const features = [
 ];
 
 const Index = () => {
-  const [viewDetailsIndex, setViewDetailsIndex] = useState<number | null>(null);
   const [packs, setPacks] = useState<packs[]>([])
 
   const navigate = useNavigate();
 
-  const handleViewDetails = (index: number) => {
-    setViewDetailsIndex(index);
-  };
-
-  const handleCloseDetails = () => {
-    setViewDetailsIndex(null);
-  };
-
   useEffect(() => {
-    const response = axios.get(`${BACKEND_URL}/pack/bulk`).then((response) => {
+    axios.get(`${BACKEND_URL}/pack/bulk`).then((response) => {
       setPacks(response.data.packs)
     })
   }, []);
