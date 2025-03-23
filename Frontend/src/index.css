@@ -1,0 +1,107 @@
+@import "tailwindcss";
+
+@plugin "tailwindcss-animate";
+
+@custom-variant dark (&:is(.dark *));
+
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+  --primary: 265 89% 78%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 210 40% 96.1%;
+  --secondary-foreground: 222.2 47.4% 11.2%;
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --accent: 265 80% 90%;
+  --accent-foreground: 222.2 47.4% 11.2%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 214.3 31.8% 94%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 265 89% 78%;
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+  --card: 222.2 84% 4.9%;
+  --card-foreground: 210 40% 98%;
+  --popover: 222.2 84% 4.9%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 265 89% 78%;
+  --primary-foreground: 222.2 47.4% 11.2%;
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --accent: 265 80% 50%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --ring: 265 89% 78%;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-feature-settings: "rlig" 1, "calt" 1;
+}
+
+.hero-gradient {
+  background-image: linear-gradient(to bottom right, hsl(var(--primary) / 0.2), hsl(var(--accent) / 0.1), hsl(var(--background)));
+}
+
+.glass-card {
+  backdrop-filter: blur(4px);
+  background-color: rgb(255 255 255 / 0.1);
+  border: 1px solid rgb(255 255 255 / 0.2);
+  border-radius: 0.75rem;
+}
+
+.dark .glass-card {
+  background-color: rgb(0 0 0 / 0.2);
+  border-color: rgb(255 255 255 / 0.1);
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .image-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.price-card-highlight {
+  position: relative;
+  overflow: hidden;
+}
+
+.price-card-highlight::before {
+  content: "";
+  position: absolute;
+  top: -0.25rem;
+  right: -0.25rem;
+  height: 6rem;
+  width: 6rem;
+  background-color: hsl(var(--primary) / 0.2);
+  border-radius: 9999px;
+  filter: blur(1rem);
+  z-index: -1;
+}
