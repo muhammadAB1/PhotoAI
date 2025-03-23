@@ -16,7 +16,7 @@ const GenerateTab = () => {
   const [prompt, setPrompt] = useState("");
   const [generating, setGenerating] = useState(false);
   const [selectedModel, setSelectedModel] = useState<string | null>(null);
-  const [imageCount, setImageCount] = useState(1);
+  const imageCount = 1;
   const [generatedImages, setGeneratedImages] = useState<string[]>([]);
   const [models, setModels] = useState<model[]>([]);
   // const [modelsLoading, setModelsLoading] = useState(false);
@@ -24,27 +24,28 @@ const GenerateTab = () => {
 
 
   const handleGenerate = async () => {
-  if (!prompt || !selectedModel) return;
-  const token = await getToken();
-  setGenerating(true);
-  const response = await axios.post(`${BACKEND_URL}/ai/generate`, {
-    prompt: prompt,
-    modelId: selectedModel,
-    num: 1},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
-  setGeneratedImages(response.data);
-  console.log(response.data)
-  setPrompt('')
-  setGenerating(false)
+    if (!prompt || !selectedModel) return;
+    const token = await getToken();
+    setGenerating(true);
+    const response = await axios.post(`${BACKEND_URL}/ai/generate`, {
+      prompt: prompt,
+      modelId: selectedModel,
+      num: 1
+    },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    setGeneratedImages(response.data);
+    console.log(response.data)
+    setPrompt('')
+    setGenerating(false)
   };
-  
-  
-  
+
+
+
   const fetchModels = async () => {
     try {
       const token = await getToken();
@@ -59,11 +60,11 @@ const GenerateTab = () => {
       console.log(error)
     }
   }
-  
+
   useEffect(() => {
     fetchModels();
   }, [])
-  
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
       {/* Left Column - Controls */}

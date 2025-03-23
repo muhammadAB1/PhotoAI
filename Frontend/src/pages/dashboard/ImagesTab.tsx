@@ -55,7 +55,7 @@ const ImagesTab = () => {
                     ))
                 ) : (
                     // Actual images
-                    images.slice(0, visibleCount).map((image, index) => (
+                    images.slice(0, visibleCount).map((image) => (
                         <div key={image.id} className="relative group overflow-hidden rounded-lg border bg-card/50 shadow-md h-70 w-58">
                             <img
                                 src={image.imageUrl}
