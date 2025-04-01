@@ -191,7 +191,7 @@ app.get('/image/bulk', authMiddleware, async (req, res) => {
 
     const imagesData = await prismaClient.outputImages.findMany({
         where: {
-            // id: { in: ids },
+            id: { in: ids },
             userId: req.userId,
             status: {
                 not: "Failed",
