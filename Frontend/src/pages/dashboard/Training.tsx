@@ -20,7 +20,6 @@ import {
 import { Switch } from "@/components/ui/switch"
 import { UploadModal } from '@/components/ui/upload'
 import axios from 'axios'
-import { BACKEND_URL } from '@/config'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '@clerk/clerk-react'
 import { useTheme } from "@/components/ThemeProvider";
@@ -51,7 +50,7 @@ const Training = () => {
             name
         }
         const token = await getToken()
-        await axios.post(`${BACKEND_URL}/ai/training`, input, {
+        await axios.post(`${process.env.BACKEND_URL}/ai/training`, input, {
             headers: {
                 Authorization: `Bearer ${token}`
             }

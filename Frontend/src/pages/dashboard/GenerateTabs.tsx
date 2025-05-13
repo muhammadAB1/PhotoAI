@@ -7,7 +7,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useTheme } from "@/components/ThemeProvider";
 import { model } from "@/types";
 import { useAuth } from "@clerk/clerk-react";
-import { BACKEND_URL } from "@/config";
 import axios from "axios";
 
 
@@ -27,7 +26,7 @@ const GenerateTab = () => {
     if (!prompt || !selectedModel) return;
     const token = await getToken();
     setGenerating(true);
-    const response = await axios.post(`${BACKEND_URL}/ai/generate`, {
+    const response = await axios.post(`${process.env.BACKEND_URL}/ai/generate`, {
       prompt: prompt,
       modelId: selectedModel,
       num: 1
@@ -49,7 +48,7 @@ const GenerateTab = () => {
   const fetchModels = async () => {
     try {
       const token = await getToken();
-      const response = await axios.get(`${BACKEND_URL}/models`, {
+      const response = await axios.get(`${process.env.BACKEND_URL}/models`, {
         headers: {
           Authorization: `Bearer ${token}`
         }

@@ -2,7 +2,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import React from "react"
 import axios from 'axios'
-import { BACKEND_URL, CLOUDFLARE_URL } from "@/config"
+import { CLOUDFLARE_URL } from "@/config"
 import JSzip from 'jszip'
 
 export function UploadModal({onUploadDone}: {onUploadDone: (zipUrlurl: string) => void}) {
@@ -17,7 +17,7 @@ export function UploadModal({onUploadDone}: {onUploadDone: (zipUrlurl: string) =
             input.multiple = true
             input.onchange = async () => {
               const zip = new JSzip();
-              const res = await axios.get(`${BACKEND_URL}/pre-signed-url`)
+              const res = await axios.get(`${process.env.BACKEND_URL}/pre-signed-url`)
               const url = res.data.url
               const key = res.data.key
               if (input.files) {

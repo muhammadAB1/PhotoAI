@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Package, Plus } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
-import { BACKEND_URL } from "@/config";
 import { model, packs } from "@/types";
 import axios from "axios";
 import { useAuth } from "@clerk/clerk-react";
@@ -22,7 +21,7 @@ const PacksTab = () => {
   const fetchPacks = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`${BACKEND_URL}/pack/bulk`, {
+      const response = await axios.get(`${process.env.BACKEND_URL}/pack/bulk`, {
       });
       console.log(response.data.packs)
       setPacks(response.data.packs);
@@ -37,7 +36,7 @@ const PacksTab = () => {
   const fetchModels = async () => {
     try {
       const token = await getToken();
-      const response = await axios.get(`${BACKEND_URL}/models`, {
+      const response = await axios.get(`${process.env.BACKEND_URL}/models`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -51,7 +50,7 @@ const PacksTab = () => {
   const generatePack = async (pack: string) => {
     try {
       const token = await getToken();
-      const response = await axios.post(`${BACKEND_URL}/pack/generate`, {
+      const response = await axios.post(`${process.env.BACKEND_URL}/pack/generate`, {
         modelId: selectedModel,
         packId: pack
       },

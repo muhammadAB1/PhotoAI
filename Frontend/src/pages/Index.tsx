@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { SignedIn, SignedOut } from "@clerk/clerk-react";
 import axios from "axios";
-import { BACKEND_URL } from "@/config";
 import { packs } from "@/types";
 import Pricing from "./Pricing";
 
@@ -68,7 +67,7 @@ const Index = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`${BACKEND_URL}/pack/bulk`).then((response) => {
+    axios.get(`${process.env.BACKEND_URL}/pack/bulk`).then((response) => {
       setPacks(response.data.packs)
     })
   }, []);

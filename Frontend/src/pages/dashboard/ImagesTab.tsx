@@ -3,7 +3,6 @@ import { ArrowDown, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import axios from "axios";
-import { BACKEND_URL } from "@/config";
 import { useAuth } from "@clerk/clerk-react";
 import { image } from '@/types'
 
@@ -17,7 +16,7 @@ const ImagesTab = () => {
         try {
             const token = await getToken();
             setLoading(true);
-            const response = await axios.get(`${BACKEND_URL}/image/bulk`, {
+            const response = await axios.get(`${process.env.BACKEND_URL}/image/bulk`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
